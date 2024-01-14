@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct FlockPocketApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

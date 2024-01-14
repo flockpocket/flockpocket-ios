@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChatThread" representedClassName="ChatThread" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" customClassName="Any"/>
+        <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="typing" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="messages" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="thread" inverseEntity="Message"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="threads" inverseEntity="User"/>
     </entity>
-    <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-    </elements>
+    <entity name="FamilyMember" representedClassName="FamilyMember" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="user_id" optional="YES" attributeType="String"/>
+        <relationship name="family" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="family" inverseEntity="User"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timestampAsString" attributeType="String"/>
+        <relationship name="thread" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ChatThread" inverseName="messages" inverseEntity="ChatThread"/>
+        <relationship name="user" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="messages" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="active" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="address" attributeType="String" defaultValueString=""/>
+        <attribute name="birthday" attributeType="Date" defaultDateTimeInterval="726884820" usesScalarValueType="NO"/>
+        <attribute name="birthdayString" attributeType="String" defaultValueString=""/>
+        <attribute name="email" attributeType="String" defaultValueString=""/>
+        <attribute name="first_name" attributeType="String" defaultValueString=""/>
+        <attribute name="full_name" attributeType="String" defaultValueString=""/>
+        <attribute name="gender" attributeType="String" defaultValueString="Not selected"/>
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="last_name" attributeType="String" defaultValueString=""/>
+        <attribute name="membership_status" attributeType="String" defaultValueString=""/>
+        <attribute name="phone" attributeType="String" defaultValueString=""/>
+        <attribute name="pic" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="family" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FamilyMember" inverseName="family" inverseEntity="FamilyMember"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="user" inverseEntity="Message"/>
+        <relationship name="threads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatThread" inverseName="user" inverseEntity="ChatThread"/>
+    </entity>
 </model>
