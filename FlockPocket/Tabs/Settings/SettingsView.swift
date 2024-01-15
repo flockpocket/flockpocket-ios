@@ -24,6 +24,11 @@ struct SettingsView: View {
                 } label: {
                     Text("Profile")
                 }
+                NavigationLink {
+                    NotificationPermissionsView()
+                } label: {
+                    Text("Notification Permissions")
+                }
                 Section("Login") {
                     Button("Login") {
                         showLoginView = true

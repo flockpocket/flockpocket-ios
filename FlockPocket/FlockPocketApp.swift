@@ -10,6 +10,7 @@ import CoreData
 
 @main
 struct FlockPocketApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -18,4 +19,7 @@ struct FlockPocketApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
+    
+    
 }
+
