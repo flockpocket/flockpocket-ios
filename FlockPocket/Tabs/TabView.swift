@@ -36,7 +36,7 @@ struct ContentView: View {
             if loggedIn {
                 let username = UserDefaults.standard.string(forKey: "username")
                 let password = UserDefaults.standard.string(forKey: "password")
-                WebSocket.shared.login(with: username!, and: password!)
+                WebSocket.shared.login()
             } else {
                 showLoginView = true
             }
