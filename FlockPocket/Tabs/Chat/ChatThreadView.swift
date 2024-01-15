@@ -14,12 +14,18 @@ struct ChatThreadView: View {
     @Binding var thread: ChatThread
     var messagesFR: FetchRequest<Message>
     var messages: FetchedResults<Message> { messagesFR.wrappedValue }
+    var typingFR: FetchRequest<TypingIndicator>
+    var typing: FetchedResults<TypingIndicator> { typingFR.wrappedValue }
     @State var sendableMessage: String = ""
     
     init(thread: Binding<ChatThread>) {
         _thread = thread
         messagesFR = FetchRequest(
             sortDescriptors: [SortDescriptor(\.timestamp)],
+            predicate: NSPredicate(format: "thread.id == %@", _thread.id! as CVarArg )
+        )
+        typingFR = FetchRequest(
+            sortDescriptors: [SortDescriptor(\.id)],
             predicate: NSPredicate(format: "thread.id == %@", _thread.id! as CVarArg )
         )
     }
@@ -39,12 +45,22 @@ struct ChatThreadView: View {
 //                }
                 MessagesScrollView(messages: messages)
                 HStack {
+                    ForEach(typing, id: \.self) { typing in
+                        if typing.active {
+                            Text("\(typing.user!.first_name!) is typing")
+                        }
+                    }
+                    .padding()
+                    Spacer()
+                }
+                
+                HStack {
                     TextField("Say something funny!", text: $sendableMessage
                               // newlines break the FP server, so taking this out for now
                               //           , axis: .vertical
                     )
                     .textFieldStyle(.roundedBorder)
-                    .onSubmit {  send() }
+                    .onSubmit { send() }
                     Button {
                         send()
                     } label: {

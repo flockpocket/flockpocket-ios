@@ -37,7 +37,7 @@ struct LoginView: View {
                         UserDefaults.standard.set(username, forKey: "username")
                         UserDefaults.standard.set(password, forKey: "password")
                         UserDefaults.standard.set(true, forKey: "usernameAndPasswordSaved")
-                        WebSocket.shared.login(with: username, and: password)
+                        WebSocket.shared.login()
                         dismiss()
                     }
                     //                TextField("Invite by Email", text: $inviteEmail)

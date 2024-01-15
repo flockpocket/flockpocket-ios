@@ -44,7 +44,7 @@ struct ChatMessageBubble: View {
 }
 
 // credit: https://prafullkumar77.medium.com/swiftui-creating-a-chat-bubble-like-imessage-using-path-and-shape-67cf23ccbf62
-private  struct ChatBubbleShape: Shape {
+private struct ChatBubbleShape: Shape {
     enum Direction {
         case left
         case right
