@@ -18,7 +18,7 @@ class WebSocket {
     var wsTask: URLSessionWebSocketTask?
     var session = URLSession(configuration: .default)
     
-    private var printResponse = true
+    private var printResponse = false
     
     func inviteUser(email: String) {
         Task {
@@ -102,13 +102,14 @@ class WebSocket {
          Task {
              wsTask!.send(URLSessionWebSocketTask.Message.string(string)) { error in
                  if let error = error {
-                     print(error)
+                     print("Send error: \(error)")
                  }
              }
          }
      }
     
     private func recoverConnection() {
+        print("Connection failed")
         var failureCount = UserDefaults.standard.integer(forKey: "websocketFailureCounter")
         failureCount += 1
         UserDefaults.standard.setValue(failureCount, forKey: "websocketFailureCounter")
@@ -143,7 +144,7 @@ class WebSocket {
                 switch result {
                 case .failure(let error):
                     print(error)
-                    self.recoverConnection()
+                    return self.recoverConnection()
                 case .success(let message):
                     switch message {
                     case .string(let text):
@@ -306,7 +307,12 @@ func updateThread(with data: [String: Any]) {
         chatThread.user = user
     }
     
-    try! context.save()
+    do {
+        try context.save()
+    } catch let error {
+        print("Error in saving thread: \(error)")
+        return
+    }
     
     if let messages = data["message_l"] {
         for remoteMessage in messages as! [[String: Any]] {
