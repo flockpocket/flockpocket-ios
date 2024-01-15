@@ -145,7 +145,6 @@ class WebSocket {
                     print(error)
                     self.recoverConnection()
                 case .success(let message):
-                    UserDefaults.standard.setValue(0, forKey: "websocketFailureCounter")
                     switch message {
                     case .string(let text):
                         let data = text.data(using: .utf8)!
@@ -165,7 +164,7 @@ class WebSocket {
                             updateSingleUser(with: decoded!["user"] as! [String: Any])
                         }
                         if decoded!.keys.contains("typing") {
-                            updateTyping(with: decoded!["typing"] as! [String: Any])
+                            updateLocalTyping(with: decoded!["typing"] as! [String: Any])
                         }
                     case .data(let data):
                         print("Received binary message: \(data)")
@@ -173,6 +172,7 @@ class WebSocket {
                         fatalError()
                     }
                 }
+//                UserDefaults.standard.setValue(0, forKey: "websocketFailureCounter")
                 self.receive()
             }
             //            self.printResponse = false
@@ -214,13 +214,23 @@ class WebSocket {
         self.send(string: #"{"chat.send_message": {"thread_id": "\#(thread)", "user_id": "\#(ownId)", "text": "\#(text)"}}"#)
     }
     
-    
     public func sendSeen(_ thread: ChatThread) {
         self.send(string: #"{"chat.send_seen": {"thread_id": "\#(thread.id!)", "message_idx": \#(thread.length)}}"#)
     }
+    
+    func sendTypingStatus(for thread: ChatThread, with status: Bool) {
+        var command: String
+        if status == true {
+            command = #"{"chat.send_typing": {"thread_id": "\#(thread.id!)"}}"#
+        } else {
+            command = #"{"chat.send_typing": {"clear": true, "thread_id": "\#(thread.id!)"}}"#
+        }
+        self.send(string: command)
+    }
 }
 
-func updateTyping(with data: [String: Any]) {
+
+func updateLocalTyping(with data: [String: Any]) {
     let context = PersistenceController.shared.container.viewContext
     
     let remoteTyping = data

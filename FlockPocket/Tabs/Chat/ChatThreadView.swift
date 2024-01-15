@@ -18,6 +18,10 @@ struct ChatThreadView: View {
     var typing: FetchedResults<TypingIndicator> { typingFR.wrappedValue }
     @State var sendableMessage: String = ""
     
+    @State private var timeRemaining = 0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timerIsActive = false
+    
     init(thread: Binding<ChatThread>) {
         _thread = thread
         messagesFR = FetchRequest(
@@ -47,7 +51,7 @@ struct ChatThreadView: View {
                 HStack {
                     ForEach(typing, id: \.self) { typing in
                         if typing.active {
-                            Text("\(typing.user!.first_name!) is typing")
+                            Text("\(typing.user!.first_name!) is typing...")
                         }
                     }
                     .padding()
@@ -59,6 +63,9 @@ struct ChatThreadView: View {
                               // newlines break the FP server, so taking this out for now
                               //           , axis: .vertical
                     )
+                    .onChange(of: sendableMessage) {
+                        sendActiveTyping()
+                    }
                     .textFieldStyle(.roundedBorder)
                     .onSubmit { send() }
                     Button {
@@ -88,6 +95,30 @@ struct ChatThreadView: View {
                     scrollToBottom(of: scrollView)
                 }
             }
+            .onReceive(timer) { time in
+                sendDoneTyping()
+            }
+        }
+    }
+    
+    fileprivate func sendActiveTyping() {
+        guard sendableMessage != "" else { return }
+        if timeRemaining == 0  {
+            WebSocket.shared.sendTypingStatus(for: thread, with: true)
+            timeRemaining = -1
+        }
+        timeRemaining = 5
+        timerIsActive = true
+    }
+    
+    fileprivate func sendDoneTyping() {
+        guard timerIsActive else { return }
+        
+        if timeRemaining > 0  {
+            timeRemaining -= 1
+        } else {
+            WebSocket.shared.sendTypingStatus(for: thread, with: false)
+            timerIsActive = false
         }
     }
     
@@ -99,6 +130,9 @@ struct ChatThreadView: View {
         if sendableMessage != "" {
             WebSocket.shared.sendChatMessage(to: thread.id!, saying: sendableMessage)
             sendableMessage = ""
+            WebSocket.shared.sendTypingStatus(for: thread, with: false)
+            timerIsActive = false
+            timeRemaining = 0
         }
     }
 }
