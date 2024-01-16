@@ -33,9 +33,7 @@ struct ContentView: View {
                 }
         }
         .onAppear() {
-            if loggedIn {
-                WebSocket.shared.login()
-            } else {
+            if !loggedIn {
                 showLoginView = true
             }
         }
