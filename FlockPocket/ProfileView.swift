@@ -23,7 +23,7 @@ struct ProfileView: View {
     
     init() {
         let viewContext = PersistenceController.shared.container.viewContext
-        let ownId = UserDefaults.standard.object(forKey: "ownUserId") as! String
+        let ownId = UserDefaults.standard.string(forKey: "ownUserId") ?? ""
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id LIKE %@",  ownId)
         let user = try! viewContext.fetch(fetchRequest).first ?? User(context: viewContext)

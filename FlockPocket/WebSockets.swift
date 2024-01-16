@@ -228,6 +228,11 @@ class WebSocket {
         }
         self.send(string: command)
     }
+    
+    public func registerForPushNotifications(with token: String) {
+        let command = #"{"chat.register_for_push_notifications_ios": {"token": "\#(token)"}}"#
+        self.send(string: command)
+    }
 }
 
 

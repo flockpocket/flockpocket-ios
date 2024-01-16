@@ -33,10 +33,7 @@ struct ContentView: View {
                 }
         }
         .onAppear() {
-            notificationRegistration()
-            if loggedIn {
-                WebSocket.shared.login()
-            } else {
+            if !loggedIn {
                 showLoginView = true
             }
         }
@@ -45,16 +42,6 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showLoginView) {
             LoginView()
-        }
-    }
-    fileprivate func notificationRegistration() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if let error = error {
-                print("D'oh: \(error.localizedDescription)")
-            }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
         }
     }
 }
