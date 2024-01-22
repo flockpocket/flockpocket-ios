@@ -32,9 +32,14 @@ struct ContentView: View {
                     Label("Account", systemImage: "gear")
                 }
         }
+        .onNotification { notification in
+            print(notification.notification.request.content.userInfo)
+        }
         .onAppear() {
             if !loggedIn {
                 showLoginView = true
+            } else {
+                WebSocket.shared.login()
             }
         }
         .onDisappear() {

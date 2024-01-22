@@ -10,7 +10,7 @@ import CoreData
 
 @main
 struct FlockPocketApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {

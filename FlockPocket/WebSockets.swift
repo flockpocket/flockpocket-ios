@@ -17,8 +17,9 @@ class WebSocket {
     
     var wsTask: URLSessionWebSocketTask?
     var session = URLSession(configuration: .default)
+    var isConnected: Bool = false
     
-    private var printResponse = false
+    private var printResponse = true
     
     func inviteUser(email: String) {
         Task {
@@ -54,6 +55,7 @@ class WebSocket {
      */
     func login() {
         Task {
+                print("starting login")
             // get CSRF token for loggin in
             let store = HTTPCookieStorage.shared
             for cookie in store.cookies ?? [] {
@@ -61,7 +63,7 @@ class WebSocket {
             }
             let (data, _) = try await session.data(from: URL(string: "https://\(hostUrl)")!)
 //            print(String(data: data, encoding: .utf8)!)
-            let csrfToken = extractCSRFToken(from: data)!
+            guard let csrfToken = extractCSRFToken(from: data) else { return }
             
             // build request
             var urlComponents = URLComponents()
@@ -79,7 +81,13 @@ class WebSocket {
             request.httpMethod = "POST"
             request.httpBody = urlComponents.percentEncodedQuery!.data(using: .utf8)
             // send login request
-            let (_, _) = try await session.data(for: request)
+            let (loginData, _) = try await session.data(for: request)
+            if String(data: loginData, encoding: .utf8)!.contains("Invalid") {
+                print("Error logging in. Retry with a different username or password")
+                return
+            } else {
+                self.isConnected = true
+            }
             
             // upgrade to websocket
             var wsUrlComps = URLComponents()
@@ -95,15 +103,23 @@ class WebSocket {
             self.pingPong()
             self.receive()
             WebSocket.shared.send(string: #""ui_config""#)
+            
+            // I'd like for this to happen separately in an .onAppear {} block,
+            //but can't figure out how to sequence it such that it only happens after finishing the login process
+            NotificationHandler.shared.getNotificationSettings()
         }
     }
     
      func send(string: String) {
          Task {
-             wsTask!.send(URLSessionWebSocketTask.Message.string(string)) { error in
-                 if let error = error {
-                     print("Send error: \(error)")
+             if let task = self.wsTask {
+                 task.send(URLSessionWebSocketTask.Message.string(string)) { error in
+                     if let error = error {
+                         print("Send error: \(error)")
+                     }
                  }
+             } else {
+                 print("Tried to send with nonexistent websocket task")
              }
          }
      }
@@ -123,60 +139,74 @@ class WebSocket {
     }
     
     func disconnect() {
-        self.wsTask!.cancel(with: .goingAway, reason: nil)
+        if let task = self.wsTask {
+            self.isConnected = false
+            task.cancel(with: .goingAway, reason: nil)
+        } else {
+            print("Tried to disconnect from nonexistent task")
+        }
     }
     
     private func pingPong() {
-        self.wsTask!.sendPing { error in
-            if let error = error {
-                print(error)
-            } else {
-                DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-                    self.pingPong()
+        if let task = self.wsTask {
+            task.sendPing { error in
+                if let error = error {
+                    print("Failed ping-pong: \(error)")
+                    self.isConnected = false
+                } else {
+                    self.isConnected = true
+                    DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
+                        self.pingPong()
+                    }
                 }
             }
+        } else {
+            print("Can't play ping-ping with nonexistent websocket task")
         }
     }
     
     private func receive() {
         Task {
-            self.wsTask!.receive { result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                    return self.recoverConnection()
-                case .success(let message):
-                    switch message {
-                    case .string(let text):
-                        let data = text.data(using: .utf8)!
-                        let decoded = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        if self.printResponse { print(decoded!) }
-                        if decoded!.keys.contains("ui_config") {
-                            updateUsers(with: decoded!)
-                            updateAllThreads(with: decoded!)
+            if let task = self.wsTask {
+                task.receive { result in
+                    switch result {
+                    case .failure(let error):
+                        print("Received error from websocket server: \(error)")
+                        return self.recoverConnection()
+                    case .success(let message):
+                        switch message {
+                        case .string(let text):
+                            let data = text.data(using: .utf8)!
+                            let decoded = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                            if self.printResponse { print(decoded!) }
+                            if decoded!.keys.contains("ui_config") {
+                                updateUsers(with: decoded!)
+                                updateAllThreads(with: decoded!)
+                            }
+                            if decoded!.keys.contains("thread") {
+                                updateThread(with: decoded!["thread"] as! [String: Any])
+                            }
+                            if decoded!.keys.contains("message") {
+                                updateMessage(with: decoded!)
+                            }
+                            if decoded!.keys.contains("user") {
+                                updateSingleUser(with: decoded!["user"] as! [String: Any])
+                            }
+                            if decoded!.keys.contains("typing") {
+                                updateLocalTyping(with: decoded!["typing"] as! [String: Any])
+                            }
+                        case .data(let data):
+                            print("Received binary message: \(data)")
+                        @unknown default:
+                            fatalError()
                         }
-                        if decoded!.keys.contains("thread") {
-                            updateThread(with: decoded!["thread"] as! [String: Any])
-                        }
-                        if decoded!.keys.contains("message") {
-                            updateMessage(with: decoded!)
-                        }
-                        if decoded!.keys.contains("user") {
-                            updateSingleUser(with: decoded!["user"] as! [String: Any])
-                        }
-                        if decoded!.keys.contains("typing") {
-                            updateLocalTyping(with: decoded!["typing"] as! [String: Any])
-                        }
-                    case .data(let data):
-                        print("Received binary message: \(data)")
-                    @unknown default:
-                        fatalError()
                     }
+                    UserDefaults.standard.setValue(0, forKey: "websocketFailureCounter")
+                    self.receive()
                 }
-//                UserDefaults.standard.setValue(0, forKey: "websocketFailureCounter")
-                self.receive()
+            } else {
+                print("Can't receive from nonexistent websocket task")
             }
-            //            self.printResponse = false
         }
     }
     
@@ -230,7 +260,7 @@ class WebSocket {
     }
     
     public func registerForPushNotifications(with token: String) {
-        let command = #"{"chat.register_for_push_notifications_ios": {"token": "\#(token)"}}"#
+        let command = #"{"register_for_push_notifications_ios": {"token": "\#(token)"}}"#
         self.send(string: command)
     }
 }
