@@ -1,9 +1,9 @@
-////
-////  AppDelegate.swift
-////  FlockPocket
-////
-////  Created by snow on 1/15/24.
-////
+//
+//  AppDelegate.swift
+//  FlockPocket
+//
+//  Created by snow on 1/15/24.
+//
 
 import SwiftUI
 import Foundation
