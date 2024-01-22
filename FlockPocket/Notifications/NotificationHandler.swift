@@ -28,14 +28,12 @@ public class NotificationHandler: ObservableObject {
     }
     
     public func getNotificationSettings() {
-        print("getting notifications")
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current()
             .requestAuthorization(
                 options: authOptions,
                 completionHandler: {_, _ in
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
-                        //            print("Notification settings: \(settings)")
                         guard settings.authorizationStatus == .authorized else { return }
                         DispatchQueue.main.async {
                             UIApplication.shared.registerForRemoteNotifications()

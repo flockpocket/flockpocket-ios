@@ -95,9 +95,7 @@
 				804949632B3F1FB300B75692 /* Info.plist */,
 				80806B2B2B1FDCE6005367A7 /* FlockPocketApp.swift */,
 				801141A52B55F1D300007AD4 /* AppDelegate.swift */,
-				80F56FD32B5DB60500FD19B9 /* NotificationHandler.swift */,
-				80F56FD52B5DB6EC00FD19B9 /* NotificationViewModifier.swift */,
-				80F56FD72B5DB77000FD19B9 /* View+Notifications.swift */,
+				80F56FD92B5EC05F00FD19B9 /* Notifications */,
 				808DC6BE2B531E5700CE31FD /* Tabs */,
 				80A384702B4F30AA0000374D /* WebSockets.swift */,
 				80D6A3112B4CBC59009D5A16 /* ProfileView.swift */,
@@ -158,6 +156,16 @@
 				808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */,
 			);
 			path = Directory;
+			sourceTree = "<group>";
+		};
+		80F56FD92B5EC05F00FD19B9 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				80F56FD32B5DB60500FD19B9 /* NotificationHandler.swift */,
+				80F56FD52B5DB6EC00FD19B9 /* NotificationViewModifier.swift */,
+				80F56FD72B5DB77000FD19B9 /* View+Notifications.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
