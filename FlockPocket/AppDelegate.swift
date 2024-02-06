@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         WebSocket.shared.registerForPushNotifications(with: token)
-        print("Device Token: \(token)")
+//        print("Device Token: \(token)")
     }
 
     func application(

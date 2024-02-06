@@ -23,6 +23,8 @@
 		808DC6C62B5323BD00CE31FD /* extensionChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */; };
 		808DC6C92B5367A000CE31FD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C82B5367A000CE31FD /* LoginView.swift */; };
 		808DC6CC2B538AFF00CE31FD /* DirectoryMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */; };
+		8096BB4D2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */; };
+		8096BB4F2B71ADA90055520F /* bleat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8096BB4E2B71ADA90055520F /* bleat.wav */; };
 		80A384712B4F30AA0000374D /* WebSockets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A384702B4F30AA0000374D /* WebSockets.swift */; };
 		80A384732B4F86EC0000374D /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A384722B4F86EC0000374D /* ProfilePhotoView.swift */; };
 		80D6A3122B4CBC59009D5A16 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6A3112B4CBC59009D5A16 /* ProfileView.swift */; };
@@ -52,6 +54,8 @@
 		808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionChatThread.swift; sourceTree = "<group>"; };
 		808DC6C82B5367A000CE31FD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMemberView.swift; sourceTree = "<group>"; };
+		8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Sheep Bleating-SoundBible.com-1373580685.wav"; sourceTree = "<group>"; };
+		8096BB4E2B71ADA90055520F /* bleat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bleat.wav; sourceTree = "<group>"; };
 		80A384702B4F30AA0000374D /* WebSockets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSockets.swift; sourceTree = "<group>"; };
 		80A384722B4F86EC0000374D /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		80D6A3112B4CBC59009D5A16 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		80806B1F2B1FDCE6005367A7 = {
 			isa = PBXGroup;
 			children = (
+				8096BB4E2B71ADA90055520F /* bleat.wav */,
 				80806B2A2B1FDCE6005367A7 /* FlockPocket */,
 				80806B292B1FDCE6005367A7 /* Products */,
 			);
@@ -112,6 +117,7 @@
 		80806B312B1FDCE8005367A7 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */,
 				80806B322B1FDCE8005367A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -227,7 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				80806B332B1FDCE8005367A7 /* Preview Assets.xcassets in Resources */,
+				8096BB4D2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav in Resources */,
 				80806B302B1FDCE8005367A7 /* Assets.xcassets in Resources */,
+				8096BB4F2B71ADA90055520F /* bleat.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

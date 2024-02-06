@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 //let hostUrl = "localhost"
 var hostUrl: String {
     UserDefaults.standard.string(forKey: "server") ?? "flock.runty.link"
@@ -55,7 +56,6 @@ class WebSocket {
      */
     func login() {
         Task {
-                print("starting login")
             // get CSRF token for loggin in
             let store = HTTPCookieStorage.shared
             for cookie in store.cookies ?? [] {
@@ -131,7 +131,7 @@ class WebSocket {
         UserDefaults.standard.setValue(failureCount, forKey: "websocketFailureCounter")
         if failureCount < 8 {
             let retryDelay = Int(pow(2.0, Double(failureCount - 1)))
-            print("Retrying connection \(failureCount)/5 times after \(retryDelay)")
+            print("Retrying connection \(failureCount)/7 times after \(retryDelay)")
             DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(retryDelay)) {
                 self.login()
             }
@@ -260,7 +260,8 @@ class WebSocket {
     }
     
     public func registerForPushNotifications(with token: String) {
-        let command = #"{"register_for_push_notifications_ios": {"token": "\#(token)"}}"#
+        guard let deviceId = UIDevice().identifierForVendor else { return }
+        let command = #"{"register_for_push_notifications_ios": {"token": "\#(token)", "deviceId": "\#(deviceId)"}}"#
         self.send(string: command)
     }
 }

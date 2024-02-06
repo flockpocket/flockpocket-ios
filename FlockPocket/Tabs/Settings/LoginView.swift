@@ -14,6 +14,8 @@ struct LoginView: View {
     @State private var password = ""
     let loggedIn = UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved")
     
+    @State private var inviteEmail = "flockuser@snowskeleton.net"
+    
     init() {
         let server = UserDefaults.standard.string(forKey: "server") ?? "flock.runty.link"
         _server = State(initialValue: server)
@@ -40,6 +42,7 @@ struct LoginView: View {
                         WebSocket.shared.login()
                         dismiss()
                     }
+                    // invites are broken right now. Need to fix the server
                     //                TextField("Invite by Email", text: $inviteEmail)
                     //                Button("Invite User") {WebSocket.shared.inviteUser(email: inviteEmail)}
                     
