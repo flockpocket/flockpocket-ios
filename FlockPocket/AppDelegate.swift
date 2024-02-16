@@ -50,6 +50,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
+        print("Recived notification while in the background")
+        print(notification)
         print(notification.request.content.userInfo)
         completionHandler([.list, .banner, .sound])
     }

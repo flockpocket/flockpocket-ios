@@ -22,7 +22,7 @@ struct ProfileView: View {
     @State private var newAddress = ""
     
     init() {
-        let viewContext = PersistenceController.shared.container.viewContext
+        let viewContext = PersistenceController.shared!.container.viewContext
         let ownId = UserDefaults.standard.string(forKey: "ownUserId") ?? ""
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id LIKE %@",  ownId)

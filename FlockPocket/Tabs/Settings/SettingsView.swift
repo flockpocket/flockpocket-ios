@@ -67,7 +67,7 @@ struct SettingsView: View {
         let userDeleteRequest = NSBatchDeleteRequest(fetchRequest: userFetchRequest)
         
         do {
-            let container = PersistenceController.shared.container
+            let container = PersistenceController.shared!.container
             try container.persistentStoreCoordinator.execute(userDeleteRequest, with: container.viewContext)
         } catch { /* TODO: handle the error */ }
     }

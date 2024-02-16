@@ -33,6 +33,7 @@ struct ContentView: View {
                 }
         }
         .onNotification { notification in
+            print("Printing notification content")
             print(notification.notification.request.content.userInfo)
         }
         .onAppear() {

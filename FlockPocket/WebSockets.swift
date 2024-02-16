@@ -268,7 +268,7 @@ class WebSocket {
 
 
 func updateLocalTyping(with data: [String: Any]) {
-    let context = PersistenceController.shared.container.viewContext
+    let context = PersistenceController.shared!.container.viewContext
     
     let remoteTyping = data
     let typingThreadId = remoteTyping["thread"] as! String
@@ -295,7 +295,7 @@ func updateLocalTyping(with data: [String: Any]) {
 }
 
 func updateMessage(with data: [String: Any]) {
-    let context = PersistenceController.shared.container.viewContext
+    let context = PersistenceController.shared!.container.viewContext
     
     let newMessage = data["message"] as! [String: Any]
     let threadId = newMessage["thread"]
@@ -310,7 +310,7 @@ func updateMessage(with data: [String: Any]) {
 }
 
 func updateThread(with data: [String: Any]) {
-    let context = PersistenceController.shared.container.viewContext
+    let context = PersistenceController.shared!.container.viewContext
     let threadId = data["id"]
     let fetchRequest: NSFetchRequest<ChatThread> = ChatThread.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "id LIKE %@", threadId as! String)
@@ -358,7 +358,7 @@ func updateThread(with data: [String: Any]) {
 }
 
 func createLocalMessageFromRemote(from messageData: [String: Any], for thread: ChatThread) {
-    let context = PersistenceController.shared.container.viewContext
+    let context = PersistenceController.shared!.container.viewContext
     
     let timestamp = messageData["timestamp"] as! Double
     let messageFetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
@@ -382,7 +382,7 @@ func createLocalMessageFromRemote(from messageData: [String: Any], for thread: C
 }
 
 func updateSingleUser(with data: [String: Any]) {
-    let context = PersistenceController.shared.container.viewContext
+    let context = PersistenceController.shared!.container.viewContext
     
     let remoteUser = data
     let id = remoteUser["id"]

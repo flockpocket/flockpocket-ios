@@ -25,6 +25,10 @@
 		808DC6CC2B538AFF00CE31FD /* DirectoryMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */; };
 		8096BB4D2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */; };
 		8096BB4F2B71ADA90055520F /* bleat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8096BB4E2B71ADA90055520F /* bleat.wav */; };
+		8096BB572B7FD29E0055520F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8096BB562B7FD29E0055520F /* NotificationService.swift */; };
+		8096BB5B2B7FD29E0055520F /* NotificationUUIDToName.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8096BB542B7FD29E0055520F /* NotificationUUIDToName.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8096BB602B7FD3490055520F /* FlockPocket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80806B362B1FDCE8005367A7 /* FlockPocket.xcdatamodeld */; };
+		8096BB612B7FD3A80055520F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80806B342B1FDCE8005367A7 /* Persistence.swift */; };
 		80A384712B4F30AA0000374D /* WebSockets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A384702B4F30AA0000374D /* WebSockets.swift */; };
 		80A384732B4F86EC0000374D /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A384722B4F86EC0000374D /* ProfilePhotoView.swift */; };
 		80D6A3122B4CBC59009D5A16 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6A3112B4CBC59009D5A16 /* ProfileView.swift */; };
@@ -33,6 +37,30 @@
 		80F56FD62B5DB6EC00FD19B9 /* NotificationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F56FD52B5DB6EC00FD19B9 /* NotificationViewModifier.swift */; };
 		80F56FD82B5DB77000FD19B9 /* View+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F56FD72B5DB77000FD19B9 /* View+Notifications.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8096BB592B7FD29E0055520F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80806B202B1FDCE6005367A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8096BB532B7FD29E0055520F;
+			remoteInfo = NotificationUUIDToName;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8096BB5F2B7FD29E0055520F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8096BB5B2B7FD29E0055520F /* NotificationUUIDToName.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		801141A42B55EDB500007AD4 /* FlockPocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlockPocket.entitlements; sourceTree = "<group>"; };
@@ -56,6 +84,10 @@
 		808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMemberView.swift; sourceTree = "<group>"; };
 		8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Sheep Bleating-SoundBible.com-1373580685.wav"; sourceTree = "<group>"; };
 		8096BB4E2B71ADA90055520F /* bleat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bleat.wav; sourceTree = "<group>"; };
+		8096BB542B7FD29E0055520F /* NotificationUUIDToName.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationUUIDToName.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8096BB562B7FD29E0055520F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8096BB582B7FD29E0055520F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8096BB622B7FE1030055520F /* NotificationUUIDToName.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationUUIDToName.entitlements; sourceTree = "<group>"; };
 		80A384702B4F30AA0000374D /* WebSockets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSockets.swift; sourceTree = "<group>"; };
 		80A384722B4F86EC0000374D /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		80D6A3112B4CBC59009D5A16 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -73,6 +105,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8096BB512B7FD29E0055520F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,6 +120,7 @@
 			children = (
 				8096BB4E2B71ADA90055520F /* bleat.wav */,
 				80806B2A2B1FDCE6005367A7 /* FlockPocket */,
+				8096BB552B7FD29E0055520F /* NotificationUUIDToName */,
 				80806B292B1FDCE6005367A7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				80806B282B1FDCE6005367A7 /* FlockPocket.app */,
+				8096BB542B7FD29E0055520F /* NotificationUUIDToName.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +205,16 @@
 			path = Directory;
 			sourceTree = "<group>";
 		};
+		8096BB552B7FD29E0055520F /* NotificationUUIDToName */ = {
+			isa = PBXGroup;
+			children = (
+				8096BB622B7FE1030055520F /* NotificationUUIDToName.entitlements */,
+				8096BB562B7FD29E0055520F /* NotificationService.swift */,
+				8096BB582B7FD29E0055520F /* Info.plist */,
+			);
+			path = NotificationUUIDToName;
+			sourceTree = "<group>";
+		};
 		80F56FD92B5EC05F00FD19B9 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,15 +235,34 @@
 				80806B242B1FDCE6005367A7 /* Sources */,
 				80806B252B1FDCE6005367A7 /* Frameworks */,
 				80806B262B1FDCE6005367A7 /* Resources */,
+				8096BB5F2B7FD29E0055520F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8096BB5A2B7FD29E0055520F /* PBXTargetDependency */,
 			);
 			name = FlockPocket;
 			productName = FlockPocket;
 			productReference = 80806B282B1FDCE6005367A7 /* FlockPocket.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8096BB532B7FD29E0055520F /* NotificationUUIDToName */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8096BB5C2B7FD29E0055520F /* Build configuration list for PBXNativeTarget "NotificationUUIDToName" */;
+			buildPhases = (
+				8096BB502B7FD29E0055520F /* Sources */,
+				8096BB512B7FD29E0055520F /* Frameworks */,
+				8096BB522B7FD29E0055520F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationUUIDToName;
+			productName = NotificationUUIDToName;
+			productReference = 8096BB542B7FD29E0055520F /* NotificationUUIDToName.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -201,11 +271,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					80806B272B1FDCE6005367A7 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					8096BB532B7FD29E0055520F = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
@@ -223,6 +296,7 @@
 			projectRoot = "";
 			targets = (
 				80806B272B1FDCE6005367A7 /* FlockPocket */,
+				8096BB532B7FD29E0055520F /* NotificationUUIDToName */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +310,13 @@
 				8096BB4D2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav in Resources */,
 				80806B302B1FDCE8005367A7 /* Assets.xcassets in Resources */,
 				8096BB4F2B71ADA90055520F /* bleat.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8096BB522B7FD29E0055520F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +351,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8096BB502B7FD29E0055520F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8096BB612B7FD3A80055520F /* Persistence.swift in Sources */,
+				8096BB572B7FD29E0055520F /* NotificationService.swift in Sources */,
+				8096BB602B7FD3490055520F /* FlockPocket.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8096BB5A2B7FD29E0055520F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8096BB532B7FD29E0055520F /* NotificationUUIDToName */;
+			targetProxy = 8096BB592B7FD29E0055520F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		80806B392B1FDCE8005367A7 /* Debug */ = {
@@ -397,6 +496,7 @@
 		80806B3C2B1FDCE8005367A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FlockPocket/FlockPocket.entitlements;
@@ -429,6 +529,7 @@
 		80806B3D2B1FDCE8005367A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FlockPocket/FlockPocket.entitlements;
@@ -458,6 +559,60 @@
 			};
 			name = Release;
 		};
+		8096BB5D2B7FD29E0055520F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationUUIDToName/NotificationUUIDToName.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PK7HCG46US;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationUUIDToName/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationUUIDToName;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.snowskeleton.FlockPocket.NotificationUUIDToName;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8096BB5E2B7FD29E0055520F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationUUIDToName/NotificationUUIDToName.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PK7HCG46US;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationUUIDToName/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationUUIDToName;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.snowskeleton.FlockPocket.NotificationUUIDToName;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -475,6 +630,15 @@
 			buildConfigurations = (
 				80806B3C2B1FDCE8005367A7 /* Debug */,
 				80806B3D2B1FDCE8005367A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8096BB5C2B7FD29E0055520F /* Build configuration list for PBXNativeTarget "NotificationUUIDToName" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8096BB5D2B7FD29E0055520F /* Debug */,
+				8096BB5E2B7FD29E0055520F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

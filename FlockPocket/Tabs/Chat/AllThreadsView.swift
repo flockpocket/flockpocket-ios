@@ -25,6 +25,7 @@ struct AllThreadsView: View {
                             if let user = thread.user {
                                 ProfilePhoto(user: user)
                                 Text(user.full_name!)
+                                Text(user.id!)
                             } else {
                                 ProgressView()
                             }
