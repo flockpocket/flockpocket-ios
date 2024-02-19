@@ -22,13 +22,7 @@ struct AllThreadsView: View {
                         NavigationLink {
                             ChatThreadView(thread: Binding<ChatThread>.constant(thread))
                         } label: {
-                            if let user = thread.user {
-                                ProfilePhoto(user: user)
-                                Text(user.full_name!)
-                                Text(user.id!)
-                            } else {
-                                ProgressView()
-                            }
+                            ThreadPreview(thread: thread)
                         }
                     }
                 }
@@ -39,5 +33,39 @@ struct AllThreadsView: View {
     }
     private func unreadThreads(_ threads: FetchedResults<ChatThread>) -> Int {
         return 2
+    }
+}
+
+struct ThreadPreview: View {
+    @ObservedObject var thread: ChatThread
+    
+    var body: some View {
+        if let user = thread.user {
+            VStack {
+                HStack {
+                    ProfilePhoto(user: user)
+                    VStack {
+                        HStack {
+                            Text(user.full_name!)
+                            Text(user.id!)
+                        }.font(.headline)
+                        HStack {
+                            Text("\(thread.latestMessage.user?.first_name ?? ""): ")
+                            Text(thread.latestMessage.text ?? "")
+                            Spacer()
+                        }.font(.subheadline.weight(.light))
+                        
+                    }
+                }
+            }
+        } else {
+            ProgressView()
+        }
+    }
+}
+
+extension ChatThread {
+    var latestMessage: Message {
+        return self.messages?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: false)]).first as! Message
     }
 }
