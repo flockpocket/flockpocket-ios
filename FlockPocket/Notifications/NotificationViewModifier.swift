@@ -25,3 +25,22 @@ struct NotificationViewModifier: ViewModifier {
             }
     }
 }
+
+struct ForegroundNotificationViewModifier: ViewModifier {
+    // MARK: - Private Properties
+    private let onNotification: (UNNotification) -> Void
+    
+    // MARK: - Initializers
+    init(onNotification: @escaping (UNNotification) -> Void, handler: NotificationHandler) {
+        self.onNotification = onNotification
+    }
+    
+    // MARK: - Body
+    func body(content: Content) -> some View {
+        content
+            .onReceive(NotificationHandler.shared.$foregroundNotification) { notification in
+                guard let notification else { return }
+                onNotification(notification)
+            }
+    }
+}

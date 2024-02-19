@@ -17,6 +17,7 @@ public class NotificationHandler: ObservableObject {
     // MARK: - Properties
     /// Latest available notification
     @Published private(set) var latestNotification: UNNotificationResponse? = .none // default value
+    @Published private(set) var foregroundNotification: UNNotification? = .none // default value
     
     // MARK: - Methods
     /// Handles the receiving of a UNNotificationResponse and propagates it to the app
@@ -25,6 +26,9 @@ public class NotificationHandler: ObservableObject {
     ///   - notification: The UNNotificationResponse to handle
     public func handle(notification: UNNotificationResponse) {
         self.latestNotification = notification
+    }
+    public func handle(notification: UNNotification) {
+        self.foregroundNotification = notification
     }
     
     public func getNotificationSettings() {

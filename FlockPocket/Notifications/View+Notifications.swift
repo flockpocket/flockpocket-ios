@@ -8,7 +8,10 @@
 import SwiftUI
 
 extension View {
-    func onNotification(perform action: @escaping (UNNotificationResponse) -> Void) -> some View {
+    func onLaunchWithNotification(perform action: @escaping (UNNotificationResponse) -> Void) -> some View {
         modifier(NotificationViewModifier(onNotification: action, handler: NotificationHandler.shared))
+    }
+    func onForegroundNotification(perform action: @escaping (UNNotification) -> Void) -> some View {
+        modifier(ForegroundNotificationViewModifier(onNotification: action, handler: NotificationHandler.shared))
     }
 }

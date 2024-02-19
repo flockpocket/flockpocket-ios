@@ -32,9 +32,13 @@ struct ContentView: View {
                     Label("Account", systemImage: "gear")
                 }
         }
-        .onNotification { notification in
-            print("Printing notification content")
+        .onLaunchWithNotification { notification in
+            print("Launched with notification")
             print(notification.notification.request.content.userInfo)
+        }
+        .onForegroundNotification { notification in
+            print("Notification while in foreground")
+            print(notification.request.content.userInfo)
         }
         .onAppear() {
             if !loggedIn {
