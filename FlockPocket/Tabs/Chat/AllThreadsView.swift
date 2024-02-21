@@ -38,6 +38,7 @@ struct AllThreadsView: View {
 
 struct ThreadPreview: View {
     @ObservedObject var thread: ChatThread
+    @AppStorage("developerMode") var developerMode = false
     
     var body: some View {
         if let user = thread.user {
@@ -47,7 +48,11 @@ struct ThreadPreview: View {
                     VStack {
                         HStack {
                             Text(user.full_name!)
-                            Text(user.id!)
+                            if developerMode {
+                                Text(user.id!)
+                            } else {
+                                Spacer()
+                            }
                         }.font(.headline)
                         HStack {
                             Text("\(thread.latestMessage?.user?.first_name ?? ""): ")
