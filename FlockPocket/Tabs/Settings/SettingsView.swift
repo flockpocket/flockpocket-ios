@@ -9,13 +9,16 @@ import SwiftUI
 import CoreData
 
 struct SettingsView: View {
-    @State private var loggedIn: Bool
+//    @State private var loggedIn: Bool
     @State private var showLogoutConfirmation = false
     @State private var showLoginView = false
     
-    init() {
-        _loggedIn = State(initialValue: UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved"))
-    }
+    @State private var enableDeveloperMode = UserDefaults.standard.developerMode
+    @State private var loggedIn = UserDefaults.standard.usernameAndPasswordSaved
+    
+//    init() {
+//        _loggedIn = State(initialValue: UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved"))
+//    }
     var body: some View {
         NavigationView {
             List {
@@ -41,6 +44,12 @@ struct SettingsView: View {
                         }
                     }
                 }
+                Section("Developer") {
+                    Toggle("Developer Mode", isOn: $enableDeveloperMode)
+                        .onChange(of: enableDeveloperMode) {
+                            UserDefaults.standard.developerMode = enableDeveloperMode
+                        }
+                }
             }
         }
         .confirmationDialog("Are you sure?", isPresented: $showLogoutConfirmation) {
@@ -58,9 +67,9 @@ struct SettingsView: View {
     }
     func logoutUser() {
         WebSocket.shared.disconnect()
-        UserDefaults.standard.set("", forKey: "username")
-        UserDefaults.standard.set("", forKey: "password")
-        UserDefaults.standard.set(false, forKey: "usernameAndPasswordSaved")
+        UserDefaults.standard.username = ""
+        UserDefaults.standard.password = ""
+        UserDefaults.standard.usernameAndPasswordSaved = false
         loggedIn = false
         
         let userFetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "User")

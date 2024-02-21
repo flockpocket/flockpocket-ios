@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		801141A62B55F1D300007AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801141A52B55F1D300007AD4 /* AppDelegate.swift */; };
 		801141A82B55F3AE00007AD4 /* NotificationPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801141A72B55F3AE00007AD4 /* NotificationPermissionsView.swift */; };
+		802BB1E12B86AEEE00CC580A /* extensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */; };
 		80806B2C2B1FDCE6005367A7 /* FlockPocketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80806B2B2B1FDCE6005367A7 /* FlockPocketApp.swift */; };
 		80806B2E2B1FDCE6005367A7 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80806B2D2B1FDCE6005367A7 /* TabView.swift */; };
 		80806B302B1FDCE8005367A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80806B2F2B1FDCE8005367A7 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		801141A42B55EDB500007AD4 /* FlockPocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlockPocket.entitlements; sourceTree = "<group>"; };
 		801141A52B55F1D300007AD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		801141A72B55F3AE00007AD4 /* NotificationPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsView.swift; sourceTree = "<group>"; };
+		802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUserDefaults.swift; sourceTree = "<group>"; };
 		804949632B3F1FB300B75692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80806B282B1FDCE6005367A7 /* FlockPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlockPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80806B2B2B1FDCE6005367A7 /* FlockPocketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlockPocketApp.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				80D6A3112B4CBC59009D5A16 /* ProfileView.swift */,
 				80A384722B4F86EC0000374D /* ProfilePhotoView.swift */,
 				808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */,
+				802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */,
 				80806B2F2B1FDCE8005367A7 /* Assets.xcassets */,
 				80806B342B1FDCE8005367A7 /* Persistence.swift */,
 				80806B362B1FDCE8005367A7 /* FlockPocket.xcdatamodeld */,
@@ -343,6 +346,7 @@
 				808DC6BD2B52425A00CE31FD /* ChatInlineTimestamps.swift in Sources */,
 				80806B2E2B1FDCE6005367A7 /* TabView.swift in Sources */,
 				808DC6CC2B538AFF00CE31FD /* DirectoryMemberView.swift in Sources */,
+				802BB1E12B86AEEE00CC580A /* extensionUserDefaults.swift in Sources */,
 				808DC6C62B5323BD00CE31FD /* extensionChatThread.swift in Sources */,
 				80806B2C2B1FDCE6005367A7 /* FlockPocketApp.swift in Sources */,
 				801141A62B55F1D300007AD4 /* AppDelegate.swift in Sources */,

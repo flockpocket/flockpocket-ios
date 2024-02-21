@@ -50,8 +50,8 @@ struct ThreadPreview: View {
                             Text(user.id!)
                         }.font(.headline)
                         HStack {
-                            Text("\(thread.latestMessage.user?.first_name ?? ""): ")
-                            Text(thread.latestMessage.text ?? "")
+                            Text("\(thread.latestMessage?.user?.first_name ?? ""): ")
+                            Text(thread.latestMessage?.text ?? "")
                             Spacer()
                         }.font(.subheadline.weight(.light))
                         
@@ -65,7 +65,7 @@ struct ThreadPreview: View {
 }
 
 extension ChatThread {
-    var latestMessage: Message {
-        return self.messages?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: false)]).first as! Message
+    var latestMessage: Message? {
+        return self.messages?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: false)]).first as? Message ?? nil
     }
 }
