@@ -20,7 +20,7 @@ class WebSocket {
     var session = URLSession(configuration: .default)
     var isConnected: Bool = false
     
-    private var printResponse = true
+    private var printResponse = false
     
     func inviteUser(email: String) {
         Task {
@@ -343,11 +343,8 @@ func updateThread(with data: [String: Any]) {
         chatThread.user = user
     }
     
-    do {
-        try context.save()
-    } catch let error {
-        print("Error in saving thread: \(error)")
-        return
+    DispatchQueue.main.async {
+        try? context.save()
     }
     
     if let messages = data["message_l"] {
@@ -378,7 +375,9 @@ func createLocalMessageFromRemote(from messageData: [String: Any], for thread: C
     message.thread = thread
     message.user = user
     
-    try? context.save()
+    DispatchQueue.main.async {
+        try? context.save()
+    }
 }
 
 func updateSingleUser(with data: [String: Any]) {

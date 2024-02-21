@@ -44,7 +44,9 @@ struct ContentView: View {
             if !loggedIn {
                 showLoginView = true
             } else {
-                WebSocket.shared.login()
+                DispatchQueue.main.async {
+                    WebSocket.shared.login()
+                }
             }
         }
         .onDisappear() {
