@@ -10,7 +10,7 @@ import CoreData
 import SwiftUI
 //let hostUrl = "localhost"
 var hostUrl: String {
-    UserDefaults.standard.string(forKey: "server") ?? "flock.runty.link"
+    UserDefaults.standard.server ?? "flock.runty.link"
 }
 class WebSocket {
     
@@ -70,8 +70,8 @@ class WebSocket {
             urlComponents.scheme = "https"
             urlComponents.host = hostUrl
             urlComponents.path = "/login/"
-            let username = UserDefaults.standard.string(forKey: "username")!
-            let password = UserDefaults.standard.string(forKey: "password")!
+            let username = UserDefaults.standard.username
+            let password = UserDefaults.standard.password
             let qiUsername = URLQueryItem(name: "username", value: username)
             let qiPassword = URLQueryItem(name: "password", value: password)
             let qiCsrfToken = URLQueryItem(name: "csrfmiddlewaretoken", value: "\(csrfToken)")
@@ -126,9 +126,9 @@ class WebSocket {
     
     private func recoverConnection() {
         print("Connection failed")
-        var failureCount = UserDefaults.standard.integer(forKey: "websocketFailureCounter")
+        var failureCount = UserDefaults.standard.websocketFailureCounter ?? 0
         failureCount += 1
-        UserDefaults.standard.setValue(failureCount, forKey: "websocketFailureCounter")
+        UserDefaults.standard.websocketFailureCounter = failureCount
         if failureCount < 8 {
             let retryDelay = Int(pow(2.0, Double(failureCount - 1)))
             print("Retrying connection \(failureCount)/7 times after \(retryDelay)")
@@ -201,7 +201,7 @@ class WebSocket {
                             fatalError()
                         }
                     }
-                    UserDefaults.standard.setValue(0, forKey: "websocketFailureCounter")
+                    UserDefaults.standard.websocketFailureCounter = 0
                     self.receive()
                 }
             } else {
@@ -241,7 +241,7 @@ class WebSocket {
     }
     
     public func sendChatMessage(to thread: String, saying text: String) {
-        let ownId = UserDefaults.standard.object(forKey: "ownUserId") as! String
+        let ownId = UserDefaults.standard.ownUserId
         self.send(string: #"{"chat.send_message": {"thread_id": "\#(thread)", "user_id": "\#(ownId)", "text": "\#(text)"}}"#)
     }
     
@@ -436,8 +436,8 @@ func updateSingleUser(with data: [String: Any]) {
 
 func updateUsers(with data: [String: Any]) {
     let ui_config = data["ui_config"]! as! [String: Any]
-    if let ownID = ui_config["user_id"] {
-        UserDefaults.standard.set(ownID, forKey: "ownUserId")
+    if let ownId = ui_config["user_id"] {
+        UserDefaults.standard.ownUserId = (ownId as! String)
     }
     let users = ui_config["user_d"]! as! [String: Any]
     for (_, value) in users {

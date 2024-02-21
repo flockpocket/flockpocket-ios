@@ -9,16 +9,12 @@ import SwiftUI
 import CoreData
 
 struct SettingsView: View {
-//    @State private var loggedIn: Bool
     @State private var showLogoutConfirmation = false
     @State private var showLoginView = false
     
     @State private var enableDeveloperMode = UserDefaults.standard.developerMode
     @State private var loggedIn = UserDefaults.standard.usernameAndPasswordSaved
     
-//    init() {
-//        _loggedIn = State(initialValue: UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved"))
-//    }
     var body: some View {
         NavigationView {
             List {
@@ -61,7 +57,7 @@ struct SettingsView: View {
             LoginView()
         }
         .onChange(of: showLoginView) {
-            loggedIn = UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved")
+            loggedIn = UserDefaults.standard.usernameAndPasswordSaved
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

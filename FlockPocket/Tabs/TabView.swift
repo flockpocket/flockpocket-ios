@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    let loggedIn = UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved")
+    @State private var loggedIn = UserDefaults.standard.usernameAndPasswordSaved
     @State private var showLoginView: Bool = false
     
     @State private var inviteEmail = "isaac+something@snowskeleton.net"

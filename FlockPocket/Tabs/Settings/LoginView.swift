@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var server: String
     @State private var username = ""
     @State private var password = ""
-    let loggedIn = UserDefaults.standard.bool(forKey: "usernameAndPasswordSaved")
+    @State private var loggedIn = UserDefaults.standard.usernameAndPasswordSaved
     
     @State private var inviteEmail = "flockuser@snowskeleton.net"
     
@@ -36,9 +36,9 @@ struct LoginView: View {
                         if loggedIn {
                             SettingsView().logoutUser()
                         }
-                        UserDefaults.standard.set(username, forKey: "username")
-                        UserDefaults.standard.set(password, forKey: "password")
-                        UserDefaults.standard.set(true, forKey: "usernameAndPasswordSaved")
+                        UserDefaults.standard.username = username
+                        UserDefaults.standard.password = password
+                        UserDefaults.standard.usernameAndPasswordSaved = true
                         WebSocket.shared.login()
                         dismiss()
                     }

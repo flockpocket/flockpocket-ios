@@ -157,7 +157,7 @@ private extension View {
 struct MessagesScrollView: View {
     @Environment(\.colorScheme) var colorScheme
     var messages: FetchedResults<Message>
-    let ownId = UserDefaults.standard.value(forKey: "ownUserId") as! String
+    let ownId = UserDefaults.standard.ownUserId
     
     var body: some View {
         ScrollView {

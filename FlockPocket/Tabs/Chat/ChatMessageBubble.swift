@@ -18,7 +18,7 @@ struct ChatMessageBubble: View {
         self.message = message
         self.wing = wing
         
-        let ownId = UserDefaults.standard.value(forKey: "ownUserId") as! String
+        let ownId = UserDefaults.standard.ownUserId
         self.own = message.user!.id! == ownId
     }
     
