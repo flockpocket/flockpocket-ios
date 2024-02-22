@@ -241,7 +241,7 @@ class WebSocket {
     }
     
     public func sendChatMessage(to thread: String, saying text: String) {
-        let ownId = UserDefaults.standard.ownUserId
+        let ownId = UserDefaults.standard.ownUserId ?? ""
         self.send(string: #"{"chat.send_message": {"thread_id": "\#(thread)", "user_id": "\#(ownId)", "text": "\#(text)"}}"#)
     }
     
@@ -291,7 +291,7 @@ func updateLocalTyping(with data: [String: Any]) {
     typing.thread = thread
     typing.user = user
     typing.active = remoteTyping["clear"] as! Int == 0 ? true : false
-    try! context.save()
+//    try! context.save()
 }
 
 func updateMessage(with data: [String: Any]) {
@@ -343,9 +343,7 @@ func updateThread(with data: [String: Any]) {
         chatThread.user = user
     }
     
-    DispatchQueue.main.async {
-        try? context.save()
-    }
+//    try? context.save()
     
     if let messages = data["message_l"] {
         for remoteMessage in messages as! [[String: Any]] {
@@ -375,9 +373,7 @@ func createLocalMessageFromRemote(from messageData: [String: Any], for thread: C
     message.thread = thread
     message.user = user
     
-    DispatchQueue.main.async {
-        try? context.save()
-    }
+//    try? context.save()
 }
 
 func updateSingleUser(with data: [String: Any]) {
@@ -431,7 +427,7 @@ func updateSingleUser(with data: [String: Any]) {
         user.membership_status = (membership_status as! String)
     }
     
-    try? context.save()
+//    try? context.save()
 }
 
 func updateUsers(with data: [String: Any]) {
