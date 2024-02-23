@@ -15,26 +15,38 @@ struct ContentView: View {
     @State private var showLoginView: Bool = false
     
     @State private var inviteEmail = "isaac+something@snowskeleton.net"
+    @State private var launchedWithNotification = false
+    @State private var chatThreadToLaunch: String = ""
     
     var body: some View {
-        TabView {
-            AllThreadsView()
-                .tabItem {
-                    Label("Messages", systemImage: "message")
-                }
-            DirectoryView()
-                .tabItem {
-                    Label("Directory", systemImage: "person.3.sequence")
-                }
-            SettingsView()
-                .badge("!")
-                .tabItem {
-                    Label("Account", systemImage: "gear")
-                }
+        NavigationStack {
+            TabView {
+                AllThreadsView()
+                    .tabItem {
+                        Label("Messages", systemImage: "message")
+                    }
+                    .navigationDestination(isPresented: $launchedWithNotification) {
+                        if launchedWithNotification {
+                            ChatThreadView(threadId: chatThreadToLaunch)
+                        }
+                    }
+                DirectoryView()
+                    .tabItem {
+                        Label("Directory", systemImage: "person.3.sequence")
+                    }
+                SettingsView()
+                    .badge("!")
+                    .tabItem {
+                        Label("Account", systemImage: "gear")
+                    }
+            }
         }
         .onLaunchWithNotification { notification in
             print("Launched with notification")
-            print(notification.notification.request.content.userInfo)
+            let uinfo = notification.notification.request.content.userInfo
+            let id = (uinfo["aps"]! as! [String: Any])["thread-id"]! as! String
+            chatThreadToLaunch = id
+            launchedWithNotification = true
         }
         .onForegroundNotification { notification in
             print("Notification while in foreground")

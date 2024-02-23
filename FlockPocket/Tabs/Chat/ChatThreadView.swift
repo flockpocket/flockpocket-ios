@@ -7,7 +7,7 @@
 
 import Combine
 import SwiftUI
-
+import CoreData
 
 struct ChatThreadView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -32,6 +32,13 @@ struct ChatThreadView: View {
             sortDescriptors: [SortDescriptor(\.id)],
             predicate: NSPredicate(format: "thread.id == %@", _thread.id! as CVarArg )
         )
+    }
+    
+    init(threadId: String) {
+        let fetchRequest: NSFetchRequest<ChatThread> = ChatThread.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id LIKE %@", threadId)
+        let chatThread = (try! PersistenceController.shared?.container.viewContext.fetch(fetchRequest).first)!
+        self.init(thread: Binding<ChatThread>.constant(chatThread))
     }
     var body: some View {
         ScrollViewReader { scrollView in
