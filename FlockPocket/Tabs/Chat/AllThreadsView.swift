@@ -68,9 +68,3 @@ struct ThreadPreview: View {
         }
     }
 }
-
-extension ChatThread {
-    var latestMessage: Message? {
-        return self.messages?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: false)]).first as? Message ?? nil
-    }
-}

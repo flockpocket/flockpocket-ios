@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		801141A62B55F1D300007AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801141A52B55F1D300007AD4 /* AppDelegate.swift */; };
 		801141A82B55F3AE00007AD4 /* NotificationPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801141A72B55F3AE00007AD4 /* NotificationPermissionsView.swift */; };
-		802BB1E12B86AEEE00CC580A /* extensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */; };
+		802BB1EE2B88E47500CC580A /* extensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BB1EB2B88E47500CC580A /* extensionUserDefaults.swift */; };
+		802BB1EF2B88E47500CC580A /* extensionUNNotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BB1EC2B88E47500CC580A /* extensionUNNotificationResponse.swift */; };
+		802BB1F02B88E47500CC580A /* extensionChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802BB1ED2B88E47500CC580A /* extensionChatThread.swift */; };
 		80806B2C2B1FDCE6005367A7 /* FlockPocketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80806B2B2B1FDCE6005367A7 /* FlockPocketApp.swift */; };
 		80806B2E2B1FDCE6005367A7 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80806B2D2B1FDCE6005367A7 /* TabView.swift */; };
 		80806B302B1FDCE8005367A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80806B2F2B1FDCE8005367A7 /* Assets.xcassets */; };
@@ -21,7 +23,6 @@
 		808DC6C02B531E7300CE31FD /* AllThreadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6BF2B531E7300CE31FD /* AllThreadsView.swift */; };
 		808DC6C22B531E9000CE31FD /* DirectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C12B531E8F00CE31FD /* DirectoryView.swift */; };
 		808DC6C42B531EA700CE31FD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C32B531EA700CE31FD /* SettingsView.swift */; };
-		808DC6C62B5323BD00CE31FD /* extensionChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */; };
 		808DC6C92B5367A000CE31FD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6C82B5367A000CE31FD /* LoginView.swift */; };
 		808DC6CC2B538AFF00CE31FD /* DirectoryMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */; };
 		8096BB4D2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */; };
@@ -67,7 +68,9 @@
 		801141A42B55EDB500007AD4 /* FlockPocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlockPocket.entitlements; sourceTree = "<group>"; };
 		801141A52B55F1D300007AD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		801141A72B55F3AE00007AD4 /* NotificationPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionsView.swift; sourceTree = "<group>"; };
-		802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUserDefaults.swift; sourceTree = "<group>"; };
+		802BB1EB2B88E47500CC580A /* extensionUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionUserDefaults.swift; sourceTree = "<group>"; };
+		802BB1EC2B88E47500CC580A /* extensionUNNotificationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionUNNotificationResponse.swift; sourceTree = "<group>"; };
+		802BB1ED2B88E47500CC580A /* extensionChatThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensionChatThread.swift; sourceTree = "<group>"; };
 		804949632B3F1FB300B75692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80806B282B1FDCE6005367A7 /* FlockPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlockPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80806B2B2B1FDCE6005367A7 /* FlockPocketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlockPocketApp.swift; sourceTree = "<group>"; };
@@ -81,7 +84,6 @@
 		808DC6BF2B531E7300CE31FD /* AllThreadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllThreadsView.swift; sourceTree = "<group>"; };
 		808DC6C12B531E8F00CE31FD /* DirectoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryView.swift; sourceTree = "<group>"; };
 		808DC6C32B531EA700CE31FD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionChatThread.swift; sourceTree = "<group>"; };
 		808DC6C82B5367A000CE31FD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		808DC6CB2B538AFF00CE31FD /* DirectoryMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMemberView.swift; sourceTree = "<group>"; };
 		8096BB4C2B71AD950055520F /* Sheep Bleating-SoundBible.com-1373580685.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Sheep Bleating-SoundBible.com-1373580685.wav"; sourceTree = "<group>"; };
@@ -117,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		802BB1EA2B88E47500CC580A /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				802BB1EB2B88E47500CC580A /* extensionUserDefaults.swift */,
+				802BB1EC2B88E47500CC580A /* extensionUNNotificationResponse.swift */,
+				802BB1ED2B88E47500CC580A /* extensionChatThread.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		80806B1F2B1FDCE6005367A7 = {
 			isa = PBXGroup;
 			children = (
@@ -148,10 +160,9 @@
 				80A384702B4F30AA0000374D /* WebSockets.swift */,
 				80D6A3112B4CBC59009D5A16 /* ProfileView.swift */,
 				80A384722B4F86EC0000374D /* ProfilePhotoView.swift */,
-				808DC6C52B5323BD00CE31FD /* extensionChatThread.swift */,
-				802BB1E02B86AEEE00CC580A /* extensionUserDefaults.swift */,
 				80806B2F2B1FDCE8005367A7 /* Assets.xcassets */,
 				80806B342B1FDCE8005367A7 /* Persistence.swift */,
+				802BB1EA2B88E47500CC580A /* extensions */,
 				80806B362B1FDCE8005367A7 /* FlockPocket.xcdatamodeld */,
 				80806B312B1FDCE8005367A7 /* Preview Content */,
 			);
@@ -340,18 +351,19 @@
 				80D6A3122B4CBC59009D5A16 /* ProfileView.swift in Sources */,
 				808DC6C22B531E9000CE31FD /* DirectoryView.swift in Sources */,
 				808DC6BB2B52414300CE31FD /* ChatMessageBubble.swift in Sources */,
+				802BB1EE2B88E47500CC580A /* extensionUserDefaults.swift in Sources */,
 				80A384732B4F86EC0000374D /* ProfilePhotoView.swift in Sources */,
 				801141A82B55F3AE00007AD4 /* NotificationPermissionsView.swift in Sources */,
 				80F56FD82B5DB77000FD19B9 /* View+Notifications.swift in Sources */,
 				808DC6BD2B52425A00CE31FD /* ChatInlineTimestamps.swift in Sources */,
 				80806B2E2B1FDCE6005367A7 /* TabView.swift in Sources */,
 				808DC6CC2B538AFF00CE31FD /* DirectoryMemberView.swift in Sources */,
-				802BB1E12B86AEEE00CC580A /* extensionUserDefaults.swift in Sources */,
-				808DC6C62B5323BD00CE31FD /* extensionChatThread.swift in Sources */,
 				80806B2C2B1FDCE6005367A7 /* FlockPocketApp.swift in Sources */,
+				802BB1EF2B88E47500CC580A /* extensionUNNotificationResponse.swift in Sources */,
 				801141A62B55F1D300007AD4 /* AppDelegate.swift in Sources */,
 				80F56FD42B5DB60500FD19B9 /* NotificationHandler.swift in Sources */,
 				808DC6C42B531EA700CE31FD /* SettingsView.swift in Sources */,
+				802BB1F02B88E47500CC580A /* extensionChatThread.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

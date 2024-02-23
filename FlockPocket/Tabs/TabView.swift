@@ -42,10 +42,7 @@ struct ContentView: View {
             }
         }
         .onLaunchWithNotification { notification in
-            print("Launched with notification")
-            let uinfo = notification.notification.request.content.userInfo
-            let id = (uinfo["aps"]! as! [String: Any])["thread-id"]! as! String
-            chatThreadToLaunch = id
+            chatThreadToLaunch = notification.id
             launchedWithNotification = true
         }
         .onForegroundNotification { notification in
